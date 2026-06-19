@@ -1,0 +1,860 @@
+/* =========================
+   PRODUCT DETAILS PAGE - تصميم أنيق ومصغر جداً
+========================= */
+
+.product-details-page {
+  padding: 70px 6% 35px;
+  background: #f8f6f4;
+  min-height: 100vh;
+}
+
+/* ===== شريط التنقل ===== */
+.product-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  background: white;
+  border: 1px solid #e8e0d8;
+  border-radius: 20px;
+  color: #2d1a0e;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.back-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.back-btn:hover {
+  border-color: #ff8a00;
+  color: #ff8a00;
+  transform: translateX(-3px);
+  box-shadow: 0 3px 12px rgba(255, 138, 0, 0.12);
+}
+
+.product-nav-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.wishlist-btn,
+.share-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e8e0d8;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist-btn:hover,
+.share-btn:hover {
+  border-color: #ff8a00;
+  transform: scale(1.08);
+  box-shadow: 0 3px 12px rgba(255, 138, 0, 0.12);
+}
+
+/* ===== الحاوية الرئيسية ===== */
+.product-main-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== معرض الصور ===== */
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-main-image {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f5f0ec;
+  aspect-ratio: 1/1;
+}
+
+.product-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-main-image:hover img {
+  transform: scale(1.04);
+}
+
+.product-rating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 11px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.product-category-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(255, 138, 0, 0.92);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+/* ===== مؤشرات الصور ===== */
+.image-dots {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.image-dots .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-dots .dot.active {
+  background: #ff8a00;
+  width: 15px;
+  border-radius: 3px;
+}
+
+/* ===== الصور المصغرة ===== */
+.product-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.thumbnail {
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1/1;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: #f5f0ec;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img {
+  transform: scale(1.05);
+}
+
+.thumbnail.active {
+  border-color: #ff8a00;
+  box-shadow: 0 0 0 2px rgba(255, 138, 0, 0.15);
+}
+
+/* ===== التفاصيل ===== */
+.product-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-header {
+  border-bottom: 1px solid #f0ece8;
+  padding-bottom: 10px;
+}
+
+.product-category-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: #fff4e5;
+  color: #ff8a00;
+  border-radius: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.product-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #2d1a0e;
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+
+.product-desc {
+  font-size: 13px;
+  color: #8a7a6a;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== السعر والحجم ===== */
+.product-price-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #faf8f6;
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.product-price-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 9px;
+  color: #8a7a6a;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff8a00;
+}
+
+.size-selector {
+  display: flex;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.size-btn {
+  padding: 5px 12px;
+  border: 1.5px solid #e8e0d8;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #2d1a0e;
+  min-width: 38px;
+}
+
+.size-btn .size-price {
+  font-size: 9px;
+  font-weight: 600;
+  color: #8a7a6a;
+}
+
+.size-btn:hover {
+  border-color: #ff8a00;
+  background: #fff4e5;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(255, 138, 0, 0.1);
+}
+
+.size-btn:active {
+  transform: scale(0.95);
+}
+
+.size-btn.active {
+  border-color: #ff8a00;
+  background: #ff8a00;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 138, 0, 0.25);
+}
+
+.size-btn.active .size-price {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== التخصيص ===== */
+.customization-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customization-group label {
+  font-weight: 600;
+  color: #2d1a0e;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.spice-options,
+.crust-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.spice-btn,
+.crust-btn {
+  padding: 6px 4px;
+  border: 1.5px solid #e8e0d8;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #2d1a0e;
+}
+
+.spice-btn .spice-emoji,
+.crust-btn .crust-emoji {
+  font-size: 14px;
+}
+
+.spice-btn:hover,
+.crust-btn:hover {
+  border-color: #ff8a00;
+  background: #fff4e5;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(255, 138, 0, 0.08);
+}
+
+.spice-btn:active,
+.crust-btn:active {
+  transform: scale(0.95);
+}
+
+.spice-btn.active,
+.crust-btn.active {
+  border-color: #ff8a00;
+  background: #ff8a00;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 138, 0, 0.2);
+}
+
+.crust-btn .crust-price {
+  font-size: 8px;
+  font-weight: 600;
+  color: #ff8a00;
+}
+
+.crust-btn.active .crust-price {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== الإضافات ===== */
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  gap: 5px;
+}
+
+.addon-btn {
+  padding: 6px 8px;
+  border: 1.5px solid #e8e0d8;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #2d1a0e;
+}
+
+.addon-btn .addon-emoji {
+  font-size: 14px;
+}
+
+.addon-btn .addon-price {
+  font-size: 8px;
+  color: #8a7a6a;
+}
+
+.addon-btn:hover {
+  border-color: #ff8a00;
+  background: #fff4e5;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(255, 138, 0, 0.08);
+}
+
+.addon-btn:active {
+  transform: scale(0.95);
+}
+
+.addon-btn.active {
+  border-color: #ff8a00;
+  background: #ff8a00;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 138, 0, 0.2);
+}
+
+.addon-btn.active .addon-price {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.customization-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid #e8e0d8;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  background: white;
+  min-height: 50px;
+}
+
+.customization-group textarea:focus {
+  outline: none;
+  border-color: #ff8a00;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.08);
+}
+
+.customization-group textarea::placeholder {
+  color: #bbb;
+  font-size: 11px;
+}
+
+/* ===== ملخص الإضافات ===== */
+.addons-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: #faf8f6;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #2d1a0e;
+}
+
+.addons-summary span:first-child {
+  font-weight: 600;
+  color: #8a7a6a;
+  font-size: 11px;
+}
+
+.addon-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  background: #fff4e5;
+  border-radius: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #2d1a0e;
+}
+
+.addon-tag span {
+  color: #ff8a00;
+}
+
+/* ===== الإجراء النهائي ===== */
+.product-action-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1.5px solid #f0ece8;
+  flex-wrap: wrap;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e8e0d8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.quantity-selector .qty-btn {
+  width: 30px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #2d1a0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-selector .qty-btn:hover {
+  background: #ff8a00;
+  color: white;
+}
+
+.quantity-selector .qty-btn:active {
+  transform: scale(0.9);
+}
+
+.qty-number {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #2d1a0e;
+}
+
+.total-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+}
+
+.total-label {
+  font-size: 9px;
+  color: #8a7a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.total-amount {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ff8a00;
+}
+
+.add-to-cart-btn {
+  padding: 9px 22px;
+  background: linear-gradient(135deg, #ff8a00 0%, #ff6b00 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+  min-width: 130px;
+  letter-spacing: 0.5px;
+}
+
+.add-to-cart-btn span {
+  font-size: 14px;
+}
+
+.add-to-cart-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 138, 0, 0.35);
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 10px rgba(255, 138, 0, 0.2);
+}
+
+/* =========================
+   RECOMMENDATIONS
+========================= */
+.recommendations-section {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #f0ece8;
+}
+
+.recommendations-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d1a0e;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+}
+
+.recommendation-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.recommendation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 138, 0, 0.12);
+}
+
+.recommendation-card:active {
+  transform: scale(0.97);
+}
+
+.rec-image {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+.rec-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.recommendation-card:hover .rec-image img {
+  transform: scale(1.05);
+}
+
+.rec-info {
+  padding: 8px 12px;
+}
+
+.rec-info h4 {
+  margin: 0 0 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2d1a0e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rec-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rec-rating {
+  font-size: 10px;
+  font-weight: 600;
+  color: #8a7a6a;
+}
+
+.rec-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff8a00;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+  .product-main-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 24px;
+  }
+
+  .product-gallery {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-details-page {
+    padding: 60px 4% 25px;
+  }
+
+  .product-main-container {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .product-name {
+    font-size: 19px;
+  }
+
+  .product-price-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .size-selector {
+    margin-left: 0;
+  }
+
+  .spice-options,
+  .crust-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .addons-grid {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  }
+
+  .product-action-section {
+    flex-direction: column;
+  }
+
+  .total-price {
+    margin-left: 0;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .product-navbar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .recommendations-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .product-main-container {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .product-name {
+    font-size: 17px;
+  }
+
+  .price-value {
+    font-size: 17px;
+  }
+
+  .size-btn {
+    padding: 4px 9px;
+    font-size: 11px;
+    min-width: 32px;
+  }
+
+  .spice-options,
+  .crust-options {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .addons-grid {
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+  }
+
+  .addon-btn {
+    padding: 5px 6px;
+    font-size: 9px;
+  }
+
+  .addon-btn .addon-emoji {
+    font-size: 12px;
+  }
+
+  .total-amount {
+    font-size: 16px;
+  }
+
+  .add-to-cart-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    min-height: 40px;
+  }
+
+  .add-to-cart-btn span {
+    font-size: 12px;
+  }
+
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .rec-info h4 {
+    font-size: 11px;
+  }
+
+  .product-rating-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    top: 6px;
+    right: 6px;
+  }
+
+  .product-category-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    bottom: 6px;
+    left: 6px;
+  }
+
+  .quantity-selector .qty-btn {
+    width: 26px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .qty-number {
+    min-width: 26px;
+    font-size: 12px;
+  }
+}

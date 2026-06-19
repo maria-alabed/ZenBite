@@ -1,0 +1,1662 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+KR:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --menu-bg: #fdf6f0;
+  --menu-header-bg: rgba(253, 246, 240, 0.92);
+  --menu-border: #f3c4b3;
+  --menu-card-bg: #fff;
+  --menu-card-border: #f9e0d5;
+  --menu-text: #2d1a0e;
+  --menu-subtext: #8a5a4a;
+  --menu-accent: #c94f3c;
+  --menu-accent-text: #fff;
+  --menu-btn-bg: #c94f3c;
+  --menu-btn-text: #fff;
+  --menu-price-co: #c94f3c;
+  --menu-badge-bg: #fff0ec;
+  --menu-badge-text: #c94f3c;
+  --menu-title-font: 'Noto Serif JP', serif;
+  --menu-stat-bg: #fff0ec;
+  --menu-stat-border: #f3c4b3;
+  --menu-stat-text: #c94f3c;
+  --menu-card-radius: 18px;
+  --menu-card-border-style: 1px solid;
+  --menu-pattern: none;
+}
+
+/* =========================
+   MENU PAGE
+========================= */
+.menu-page {
+  padding: 120px 6% 80px;
+  background: var(--menu-bg);
+  color: var(--menu-text);
+  min-height: 100vh;
+  transition: background 0.6s ease, color 0.5s ease;
+  position: relative;
+}
+
+.menu-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--menu-pattern);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.page-transition {
+  opacity: 0;
+  transform: translateY(15px) scale(0.98);
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   GLOW EFFECT
+========================= */
+.glow-effect {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--menu-accent);
+  top: -200px;
+  right: -200px;
+  transition: all 1s ease;
+}
+
+/* =========================
+   CATEGORY STRIP
+========================= */
+.category-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 12px 12px 20px;
+  border-bottom: 1px solid var(--menu-border);
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+  background: var(--menu-header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.6s ease, border-color 0.6s ease;
+  border-radius: 0 0 16px 16px;
+}
+
+/* ===== مجموعة الأقسام ===== */
+.category-group-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--menu-subtext);
+  border: 1px solid var(--menu-border);
+}
+
+.category-group-label .group-icon {
+  font-size: 16px;
+}
+
+.category-group-label .group-name {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.category-divider {
+  width: 2px;
+  height: 30px;
+  background: var(--menu-border);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.desserts-drinks-label {
+  background: linear-gradient(135deg, rgba(212,54,106,0.1), rgba(192,64,255,0.1)) !important;
+  border-color: #d4366a !important;
+  color: #d4366a !important;
+}
+
+/* ===== أزرار الأقسام ===== */
+.cat-strip-btn {
+  padding: 9px 20px;
+  background: transparent;
+  border: 1.5px solid var(--menu-border);
+  border-radius: 40px;
+  color: var(--menu-subtext);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.cat-strip-btn:hover {
+  border-color: var(--menu-accent);
+  color: var(--menu-accent);
+  transform: translateY(-2px);
+}
+
+.cat-strip-btn.active {
+  background: var(--menu-accent);
+  border-color: var(--menu-accent);
+  color: var(--menu-accent-text);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--menu-accent) 35%, transparent);
+}
+
+.cat-icon {
+  font-size: 17px;
+}
+
+.cat-name {
+  font-size: 13px;
+}
+
+/* =========================
+   HERO STRIP
+========================= */
+.menu-hero-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  padding: 28px 8px 20px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--menu-card-bg) 60%, transparent), transparent);
+  border-radius: 20px;
+  transition: background 0.6s ease;
+}
+
+.desserts-hero {
+  background: linear-gradient(135deg, #fef0f5 0%, #fce4ed 100%) !important;
+}
+
+.menu-hero-flag {
+  font-size: 54px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  flex-shrink: 0;
+}
+
+.menu-hero-text {
+  flex: 1;
+}
+
+.menu-hero-title {
+  font-family: var(--menu-title-font);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--menu-text);
+  margin: 0 0 5px;
+  transition: font-family 0.3s, color 0.5s;
+}
+
+.menu-hero-desc {
+  font-size: 13px;
+  color: var(--menu-subtext);
+  letter-spacing: 0.06em;
+  margin: 0;
+  transition: color 0.5s;
+}
+
+.menu-deco-element {
+  font-size: 130px;
+  line-height: 1;
+  color: var(--menu-accent);
+  opacity: 0.07;
+  position: absolute;
+  right: -10px;
+  bottom: -30px;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.5s;
+}
+
+/* =========================
+   STATS ROW
+========================= */
+.menu-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 4px 24px;
+  transition: all 0.5s;
+}
+
+.menu-stat-chip {
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--menu-stat-bg);
+  border: 1px solid var(--menu-stat-border);
+  color: var(--menu-stat-text);
+  transition: all 0.5s ease;
+}
+
+.group-tag {
+  font-weight: 600 !important;
+}
+
+.group-tag.mains {
+  background: rgba(52, 152, 219, 0.1) !important;
+  border-color: #3498db !important;
+  color: #3498db !important;
+}
+
+.group-tag.dessertsDrinks {
+  background: rgba(212,54,106,0.1) !important;
+  border-color: #d4366a !important;
+  color: #d4366a !important;
+}
+
+/* =========================
+   DISHES GRID - 4 منتجات في كل صف
+========================= */
+.dishes-section {
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* =========================
+   DISH CARD
+========================= */
+.dish-card {
+  background: var(--menu-card-bg);
+  border: var(--menu-card-border-style) var(--menu-card-border);
+  border-radius: var(--menu-card-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: travelFadeIn 0.6s ease-out backwards;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes travelFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== أنماط خاصة بكل قسم ===== */
+.dish-card[data-category="Japanese Kitchen"] {
+  box-shadow: 0 8px 32px rgba(201,79,60,0.1);
+}
+
+.dish-card[data-category="Chinese Kitchen"] {
+  box-shadow: 0 8px 32px rgba(232,160,32,0.15);
+}
+
+.dish-card[data-category="Korean Kitchen"] {
+  border-left: 4px solid var(--menu-accent);
+}
+
+.dish-card[data-category="Seafood"] {
+  box-shadow: 0 8px 32px rgba(0,180,216,0.15);
+}
+
+.dish-card[data-category="Desserts"] {
+  box-shadow: 0 8px 32px rgba(212,54,106,0.1);
+}
+
+/* ===== كارد الحلويات والمشروبات ===== */
+.dessert-drink-card {
+  border: 2px solid #d4366a !important;
+  box-shadow: 0 8px 32px rgba(212,54,106,0.15) !important;
+}
+
+.dessert-drink-card .dish-img-wrap {
+  position: relative;
+}
+
+.dessert-drink-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 24px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ===== عند التحويم ===== */
+.dish-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--menu-accent) 15%, transparent);
+}
+
+/* ===== صورة الطبق ===== */
+.dish-img-wrap {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dish-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dish-card:hover .dish-img-wrap img {
+  transform: scale(1.07);
+}
+
+.dish-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--menu-badge-bg);
+  color: var(--menu-badge-text);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* ===== محتوى الكارد ===== */
+.dish-info {
+  padding: 16px 18px;
+}
+
+.dish-header h3 {
+  margin: 0 0 6px;
+  color: var(--menu-text);
+  font-size: 17px;
+  font-weight: 600;
+  transition: color 0.5s;
+}
+
+.dish-info > p {
+  color: var(--menu-subtext);
+  font-size: 13px;
+  line-height: 1.55;
+  margin-bottom: 14px;
+  transition: color 0.5s;
+}
+
+.dish-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dish-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--menu-price-co);
+  transition: color 0.5s;
+}
+
+.add-cart-btn {
+  border: none;
+  background: var(--menu-btn-bg);
+  color: var(--menu-btn-text);
+  padding: 9px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: background 0.4s ease, color 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-cart-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--menu-accent) 35%, transparent);
+}
+
+.add-cart-btn:active {
+  transform: scale(0.96);
+}
+
+/* ===== زر إضافة للحلويات والمشروبات ===== */
+.dessert-add-btn {
+  background: linear-gradient(135deg, #d4366a, #c040ff) !important;
+}
+
+.dessert-add-btn:hover {
+  background: linear-gradient(135deg, #e74c8a, #d060ff) !important;
+  box-shadow: 0 4px 20px rgba(212,54,106,0.4) !important;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--menu-card-bg);
+  border-radius: 24px;
+  border: 1px solid var(--menu-card-border);
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.empty-icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+}
+
+.empty-state h2 {
+  font-size: 26px;
+  color: var(--menu-text);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--menu-subtext);
+  font-size: 14px;
+}
+
+/* =========================
+   ITALIAN KITCHEN - PIZZA CARDS
+========================= */
+.dish-card[data-category="Italian Kitchen"] {
+  border-radius: 50% 50% 30px 30px !important;
+  background: linear-gradient(135deg, #fdf6f0 0%, #f5e6d8 100%) !important;
+  border: 3px solid #c0392b !important;
+  padding: 20px 20px 25px !important;
+  position: relative;
+  overflow: visible !important;
+  box-shadow: 0 8px 32px rgba(192, 57, 43, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-img-wrap {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -50px auto 10px;
+  border: 4px solid #c0392b;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #c0392b;
+  color: #fff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 2px solid #fff;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-info {
+  text-align: center;
+  padding: 10px 15px;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #2d1a0e;
+  margin-bottom: 5px;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-info > p {
+  color: #8a6a5a;
+  font-size: 13px;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+/* ===== حجم البيتزا ===== */
+.pizza-size-selector {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 0 5px;
+}
+
+.pizza-size-btn {
+  padding: 5px 15px;
+  border: 2px solid #d4a080;
+  border-radius: 20px;
+  background: transparent;
+  color: #8a6a5a;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+}
+
+.pizza-size-btn:hover {
+  border-color: #c0392b;
+  color: #c0392b;
+  transform: scale(1.05);
+}
+
+.pizza-size-btn.active {
+  background: #c0392b;
+  border-color: #c0392b;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+}
+
+.pizza-size-btn small {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* ===== السعر والإضافة ===== */
+.dish-card[data-category="Italian Kitchen"] .dish-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-top: 5px;
+  border-top: 2px dashed #f0d0c0;
+  padding-bottom: 5px;
+}
+
+.dish-card[data-category="Italian Kitchen"] .dish-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #c0392b;
+  font-family: 'Playfair Display', serif;
+}
+
+.dish-card[data-category="Italian Kitchen"] .add-cart-btn {
+  background: #c0392b;
+  color: #fff;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+}
+
+.dish-card[data-category="Italian Kitchen"] .add-cart-btn:hover {
+  background: #e74c3c;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+}
+
+.dish-card[data-category="Italian Kitchen"] .add-cart-btn:active {
+  background: #1aff53;
+  color: white;
+  transform: scale(0.96);
+}
+
+/* ===== قوس البيتزا ===== */
+.pizza-arch {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 30px;
+  background: linear-gradient(180deg, #c0392b, #d4a080);
+  border-radius: 50% 50% 0 0;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+.menu-page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-page::-webkit-scrollbar-thumb {
+  background: var(--menu-accent);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+/* =========================
+   RESPONSIVE - شامل لكل الأقسام
+========================= */
+
+/* شاشات كبيرة (لابتوب) */
+@media (max-width: 1200px) {
+  .dishes-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+/* شاشات متوسطة (تابلت) */
+@media (max-width: 992px) {
+  .menu-page {
+    padding: 100px 4% 60px;
+  }
+
+  .dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .category-strip {
+    top: 60px;
+    gap: 8px;
+    padding: 10px 10px 16px;
+  }
+
+  .cat-strip-btn {
+    padding: 7px 15px;
+    font-size: 12px;
+  }
+
+  .cat-icon {
+    font-size: 15px;
+  }
+
+  .cat-name {
+    font-size: 12px;
+  }
+
+  .menu-hero-title {
+    font-size: 24px;
+  }
+
+  .menu-hero-flag {
+    font-size: 45px;
+  }
+
+  .menu-deco-element {
+    font-size: 100px;
+  }
+
+  .dish-img-wrap {
+    height: 160px;
+  }
+
+  .dish-header h3 {
+    font-size: 16px;
+  }
+
+  .dish-price {
+    font-size: 18px;
+  }
+
+  .add-cart-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .glow-effect {
+    width: 400px;
+    height: 400px;
+    top: -150px;
+    right: -150px;
+  }
+}
+
+/* شاشات صغيرة (جوال) */
+@media (max-width: 768px) {
+  .menu-page {
+    padding: 90px 3% 40px;
+  }
+
+  .category-strip {
+    top: 55px;
+    gap: 6px;
+    padding: 8px 6px 12px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .category-group-label {
+    padding: 3px 8px;
+    font-size: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .category-group-label .group-name {
+    font-size: 9px;
+  }
+
+  .category-divider {
+    height: 15px;
+    width: 100%;
+    margin: 2px 0;
+  }
+
+  .cat-strip-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .cat-icon {
+    font-size: 13px;
+  }
+
+  .cat-name {
+    font-size: 10px;
+  }
+
+  .menu-hero-strip {
+    padding: 20px 6px 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .menu-hero-title {
+    font-size: 20px;
+  }
+
+  .menu-hero-flag {
+    font-size: 35px;
+  }
+
+  .menu-hero-desc {
+    font-size: 11px;
+  }
+
+  .menu-deco-element {
+    font-size: 80px;
+    right: -5px;
+    bottom: -20px;
+  }
+
+  .menu-stats-row {
+    gap: 6px;
+    padding: 0 2px 16px;
+  }
+
+  .menu-stat-chip {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+
+  .dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .dish-img-wrap {
+    height: 130px;
+  }
+
+  .dish-info {
+    padding: 12px 14px;
+  }
+
+  .dish-header h3 {
+    font-size: 14px;
+  }
+
+  .dish-info > p {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .dish-price {
+    font-size: 16px;
+  }
+
+  .add-cart-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .dish-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .glow-effect {
+    width: 250px;
+    height: 250px;
+    top: -100px;
+    right: -100px;
+    opacity: 0.05;
+  }
+
+  /* ===== بيتزا ===== */
+  .dish-card[data-category="Italian Kitchen"] .dish-img-wrap {
+    width: 90px;
+    height: 90px;
+    margin: -35px auto 8px;
+  }
+
+  .pizza-size-btn {
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+
+  .dish-card[data-category="Italian Kitchen"] .dish-header h3 {
+    font-size: 15px;
+  }
+
+  .dish-card[data-category="Italian Kitchen"] .dish-price {
+    font-size: 18px;
+  }
+
+  .dish-card[data-category="Italian Kitchen"] .add-cart-btn {
+    padding: 6px 14px;
+    font-size: 11px;
+  }
+
+  .pizza-arch {
+    height: 20px;
+    top: -10px;
+  }
+
+  .empty-state {
+    padding: 40px 15px;
+  }
+
+  .empty-icon {
+    font-size: 40px;
+  }
+
+  .empty-state h2 {
+    font-size: 20px;
+  }
+
+  .empty-state p {
+    font-size: 12px;
+  }
+}
+
+/* شاشات صغيرة جداً (جوال صغير) */
+@media (max-width: 480px) {
+  .menu-page {
+    padding: 80px 2% 30px;
+  }
+
+  .dishes-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cat-strip-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .cat-icon {
+    font-size: 12px;
+  }
+
+  .cat-name {
+    font-size: 9px;
+  }
+
+  .menu-hero-title {
+    font-size: 18px;
+  }
+
+  .menu-hero-flag {
+    font-size: 30px;
+  }
+
+  .dish-img-wrap {
+    height: 180px;
+  }
+
+  .dish-header h3 {
+    font-size: 16px;
+  }
+
+  .dish-info > p {
+    font-size: 12px;
+  }
+
+  .dish-price {
+    font-size: 18px;
+  }
+
+  .add-cart-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  /* ===== بيتزا ===== */
+  .dish-card[data-category="Italian Kitchen"] .dish-img-wrap {
+    width: 110px;
+    height: 110px;
+    margin: -40px auto 10px;
+  }
+
+  .pizza-size-btn {
+    padding: 5px 14px;
+    font-size: 12px;
+  }
+
+  .dish-card[data-category="Italian Kitchen"] .dish-header h3 {
+    font-size: 17px;
+  }
+
+  .dish-card[data-category="Italian Kitchen"] .dish-price {
+    font-size: 20px;
+  }
+
+  .dish-card[data-category="Italian Kitchen"] .add-cart-btn {
+    padding: 7px 18px;
+    font-size: 12px;
+  }
+}
+/* =========================
+   FLYING ITEM ANIMATION
+========================= */
+
+/* ===== العنصر الطائر ===== */
+.flying-item {
+  position: fixed;
+  font-size: 35px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 1;
+  transition: none;
+}
+
+.flying-item.flying {
+  animation: flyToCart 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes flyToCart {
+  0% {
+    left: var(--start-x);
+    top: var(--start-y);
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.3) rotate(-20deg);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(0.8) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    left: var(--end-x);
+    top: var(--end-y);
+    transform: scale(0.3) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== تأثير السلة عند الوصول ===== */
+.cart-icon-wrapper.bump-cart {
+  animation: cartBump 0.5s ease;
+}
+
+@keyframes cartBump {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== مسار متوهج خلف العنصر الطائر ===== */
+.flying-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+  border-radius: 50%;
+  animation: glowTrail 0.8s ease-out forwards;
+}
+
+@keyframes glowTrail {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+/* =========================
+   OUT OF STOCK
+========================= */
+
+/* ===== زر غير متوفر ===== */
+.add-cart-btn.out-of-stock {
+  background: #ccc !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+  pointer-events: none !important;
+}
+
+.add-cart-btn.out-of-stock:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* ===== البطاقة عندما يكون المنتج غير متوفر ===== */
+.dish-card .dish-img-wrap {
+  position: relative;
+}
+
+/* إضافة تأثير خفيف على الصورة */
+.dish-card:has(.out-of-stock) .dish-img-wrap img {
+  filter: grayscale(0.3);
+  opacity: 0.8;
+}
+/* =========================
+   LIKE BUTTON
+========================= */
+
+/* ===== زر اللايك ===== */
+.like-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.like-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.like-btn:active {
+  transform: scale(0.85);
+}
+
+.like-btn.liked {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 20px rgba(255, 107, 107, 0.3);
+}
+
+.like-btn .like-icon {
+  transition: all 0.3s ease;
+}
+
+.like-btn.liked .like-icon {
+  animation: likePop 0.5s ease;
+}
+
+@keyframes likePop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== عدد اللايكات ===== */
+.like-count {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+/* ===== التقييم على اليمين ===== */
+.dish-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--menu-badge-bg);
+  color: var(--menu-badge-text);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.5s, color 0.5s;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+/* =========================
+   SEARCH & FILTER BAR
+========================= */
+
+.search-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid var(--menu-border);
+  flex-wrap: wrap;
+}
+
+/* ===== Search ===== */
+.search-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: #f5f0ec;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.search-container:focus-within {
+  border-color: var(--menu-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.1);
+}
+
+.search-icon {
+  color: #8a7a6a;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--menu-text);
+  outline: none;
+  font-family: inherit;
+}
+
+.search-input::placeholder {
+  color: #b0a8a0;
+}
+
+.clear-search {
+  background: none;
+  border: none;
+  color: #8a7a6a;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-search:hover {
+  background: #f0ece8;
+  color: #e74c3c;
+}
+
+/* ===== Filter Controls ===== */
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: #f5f0ec;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8a7a6a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-toggle-btn:hover {
+  background: #fff4e5;
+  color: #ff8a00;
+}
+
+.filter-toggle-btn.active {
+  background: #ff8a00;
+  color: white;
+  border-color: #ff8a00;
+}
+
+.sort-select {
+  padding: 8px 16px;
+  background: #f5f0ec;
+  border: 1px solid #e0d6ce;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d1a0e;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.sort-select:hover {
+  border-color: #ff8a00;
+}
+
+.sort-select:focus {
+  border-color: #ff8a00;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.1);
+}
+
+/* ===== Filter Panel ===== */
+.filter-panel {
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid var(--menu-border);
+  margin-bottom: 24px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-section h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--menu-text);
+  margin: 0 0 12px;
+}
+
+.price-range {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price-input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8a7a6a;
+}
+
+.price-input-group input {
+  width: 70px;
+  padding: 6px 10px;
+  border: 1px solid #e0d6ce;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--menu-text);
+  outline: none;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.price-input-group input:focus {
+  border-color: #ff8a00;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.1);
+}
+
+.price-dash {
+  color: #b0a8a0;
+  font-weight: 600;
+}
+
+.price-slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff8a00;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(255, 138, 0, 0.3);
+}
+
+.price-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff8a00;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(255, 138, 0, 0.3);
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0ece8;
+}
+
+.reset-filters-btn {
+  padding: 8px 24px;
+  background: transparent;
+  border: 1px solid #e0d6ce;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8a7a6a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-filters-btn:hover {
+  background: #fde8e8;
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .search-filter-bar {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .search-container {
+    min-width: unset;
+  }
+
+  .filter-controls {
+    justify-content: space-between;
+  }
+
+  .filter-panel {
+    padding: 16px;
+  }
+
+  .price-inputs {
+    flex-wrap: wrap;
+  }
+
+  .price-input-group input {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-filter-bar {
+    padding: 10px 12px;
+  }
+
+  .search-input {
+    font-size: 13px;
+  }
+
+  .filter-toggle-btn {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .sort-select {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .filter-section h4 {
+    font-size: 13px;
+  }
+
+  .price-input-group input {
+    width: 50px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+/* ✅ إصلاح انعكاس البطاقات في الوضع العربي */
+
+/* 1. إعادة تعيين الاتجاه للبطاقات فقط */
+.dish-card {
+  direction: ltr; /* إجبار البطاقة على الاتجاه من اليسار لليمين */
+}
+
+/* 2. إصلاح محاذاة النصوص داخل البطاقة */
+.dish-info {
+  text-align: left;
+}
+
+/* 3. إصلاح ترتيب العناصر داخل البطاقة */
+.dish-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.dish-header h3 {
+  text-align: left;
+  flex: 1;
+}
+
+.dish-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 4. إصلاح صورة البطاقة */
+.dish-img-wrap img {
+  /* لا تغيير */
+}
+
+/* 5. إصلاح أزرار الحجم */
+.pizza-size-selector {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+/* 6. إصلاح شارة التقييم */
+.dish-badge {
+  right: 10px;
+  left: auto;
+}
+
+/* 7. إصلاح الفلترة والبحث */
+.search-filter-bar {
+  direction: ltr;
+}
+
+.filter-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+/* 8. إصلاح شريط التصنيفات */
+.category-strip {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 9. إصلاح الإحصائيات */
+.menu-stats-row {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 10. إذا كنت تريد الحفاظ على النص العربي بمحاذاة صحيحة */
+[lang="ar"] .dish-info p,
+[lang="ar"] .dish-header h3 {
+  text-align: right;
+}
+
+/* 11. إصلاح زر الإضافة */
+.add-cart-btn {
+  margin-left: auto;
+}
+
+/* إذا كنت تريد النص العربي يبقى من اليمين لليسار */
+[lang="ar"] .popular-dishes .dish-info h3,
+[lang="ar"] .popular-dishes .dish-info p {
+  text-align: right;
+}
+/* 🔴 تأثير زر الإضافة عند الضغط (مثل العروض) */
+.add-cart-btn.added {
+  background: #27ae60 !important;
+  color: white !important;
+  border-color: #27ae60 !important;
+  transition: all 0.3s ease;
+  transform: scale(1.05);
+}
+
+.add-cart-btn.added:hover {
+  background: #2ecc71 !important;
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(39, 174, 96, 0.4);
+}
+
+.add-cart-btn.added:active {
+  transform: scale(0.95);
+}
+
+/* 🔴 زر الإضافة في البيتزا */
+.dish-card[data-category="Italian Kitchen"] .add-cart-btn.added {
+  background: #27ae60 !important;
+  border-color: #27ae60 !important;
+}
+
+.dish-card[data-category="Italian Kitchen"] .add-cart-btn.added:hover {
+  background: #2ecc71 !important;
+}

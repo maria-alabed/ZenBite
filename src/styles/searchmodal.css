@@ -1,0 +1,245 @@
+/* =========================
+   SEARCH MODAL
+========================= */
+.search-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+  animation: searchFadeIn 0.3s ease;
+}
+
+@keyframes searchFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.search-modal {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: searchSlideDown 0.3s ease;
+}
+
+@keyframes searchSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.search-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid #f0ece8;
+  padding-bottom: 14px;
+}
+
+.search-modal-icon {
+  color: #8a7a6a;
+  flex-shrink: 0;
+}
+
+.search-modal-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2d1a0e;
+  font-family: inherit;
+  background: transparent;
+}
+
+.search-modal-input::placeholder {
+  color: #b0a8a0;
+  font-weight: 400;
+}
+
+.search-modal-close {
+  background: none;
+  border: none;
+  color: #8a7a6a;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-modal-close:hover {
+  background: #f5f0ec;
+  color: #e74c3c;
+  transform: rotate(90deg);
+}
+
+/* ===== نتائج البحث ===== */
+.search-modal-results {
+  margin-top: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.search-modal-results::-webkit-scrollbar {
+  width: 4px;
+}
+
+.search-modal-results::-webkit-scrollbar-track {
+  background: #f5f0ec;
+  border-radius: 4px;
+}
+
+.search-modal-results::-webkit-scrollbar-thumb {
+  background: #ff8a00;
+  border-radius: 4px;
+}
+
+.search-modal-results::-webkit-scrollbar-thumb:hover {
+  background: #e67a00;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.search-result-item:hover {
+  background: #fdf6f0;
+  border-color: #f0e0d0;
+  transform: translateX(4px);
+}
+
+.search-result-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.search-result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d1a0e;
+  margin: 0 0 2px;
+}
+
+.search-result-info p {
+  font-size: 12px;
+  color: #8a7a6a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-result-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff8a00;
+  flex-shrink: 0;
+}
+
+/* ===== لا توجد نتائج ===== */
+.search-no-results {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.search-no-results span {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.search-no-results p {
+  font-size: 16px;
+  color: #8a7a6a;
+  margin: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .search-modal-overlay {
+    padding-top: 40px;
+  }
+
+  .search-modal {
+    margin: 0 16px;
+    padding: 16px;
+  }
+
+  .search-modal-input {
+    font-size: 16px;
+  }
+
+  .search-result-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .search-result-item img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-result-info h4 {
+    font-size: 13px;
+  }
+
+  .search-result-price {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-modal-overlay {
+    padding-top: 20px;
+  }
+
+  .search-modal {
+    padding: 12px;
+  }
+
+  .search-modal-input {
+    font-size: 14px;
+  }
+
+  .search-result-item img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .search-no-results span {
+    font-size: 36px;
+  }
+}
