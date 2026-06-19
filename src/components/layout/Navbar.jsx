@@ -1,3 +1,4 @@
+// src/components/layout/Navbar.jsx
 import "../../styles/layout.css";
 import { useState, forwardRef, useImperativeHandle, useRef, useEffect } from "react";
 import CartSidebar from "../cart/CartSidebar";
@@ -10,6 +11,7 @@ import { translations } from "../../utils/translations";
 const Navbar = forwardRef((props, ref) => {
   const [openCart, setOpenCart] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // 🔴 Hamburger menu state
   const { getTotalItems, isAnimating } = useCart();
   const { language, toggleLanguage, isRTL } = useLanguage();
   const [animate, setAnimate] = useState(false);
@@ -30,18 +32,29 @@ const Navbar = forwardRef((props, ref) => {
     }
   }, [isAnimating]);
 
+  // 🔴 إغلاق المنيو عند تغيير المسار
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [window.location.pathname]);
+
   const handleCartClick = () => {
     setOpenCart(true);
+    setIsMenuOpen(false);
   };
 
-  // دالة استدعاء النادل
   const handleCallWaiter = () => {
     alert("🔔 Waiter has been notified! They'll be with you shortly.");
+    setIsMenuOpen(false);
   };
 
-  // 🔴 دالة فتح مودال البحث
   const handleSearchClick = () => {
     setIsSearchOpen(true);
+    setIsMenuOpen(false);
+  };
+
+  // 🔴 إغلاق المنيو عند الضغط على رابط
+  const handleNavLinkClick = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -56,22 +69,31 @@ const Navbar = forwardRef((props, ref) => {
             </div>
           </div>
 
+          {/* 🔴 Hamburger Menu Button - يظهر فقط على الموبايل */}
+          <button 
+            className={`hamburger-menu ${isMenuOpen ? 'active' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
           {/* الروابط */}
-          <ul className="nav-links-modern" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
-            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+          <ul className={`nav-links-modern ${isMenuOpen ? 'open' : ''}`} style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavLinkClick}>
               <span className="nav-name">{t.home}</span>
             </NavLink>
             
-            <NavLink to="/menu" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/menu" className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavLinkClick}>
               <span className="nav-name">{t.menu}</span>
             </NavLink>
             
-            {/* 🆕 OffersPage */}
-            <NavLink to="/offer" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/offer" className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavLinkClick}>
               <span className="nav-name">🔥 {t.offers}</span>
             </NavLink>
             
-            {/* 🆕 Call Waiter */}
             <li 
               className="call-waiter-btn"
               onClick={handleCallWaiter}
@@ -82,31 +104,14 @@ const Navbar = forwardRef((props, ref) => {
 
           {/* الأزرار */}
           <div className="nav-actions">
-            {/* 🔴 زر تبديل اللغة */}
             <button 
               className="lang-btn"
               onClick={toggleLanguage}
               aria-label="Toggle language"
-              style={{
-                background: 'none',
-                border: '1px solid #e0d6ce',
-                borderRadius: '50%',
-                width: '40px',
-                height: '40px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#2d1a0e',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
             >
               {language === 'en' ? '🇸🇦' : '🇬🇧'}
             </button>
 
-            {/* 🔴 زر البحث - يفتح المودال */}
             <button 
               className="search-btn" 
               aria-label="Search"
@@ -135,7 +140,6 @@ const Navbar = forwardRef((props, ref) => {
         </div>
       </nav>
 
-      {/* 🔴 مودال البحث */}
       <SearchModal 
         isOpen={isSearchOpen} 
         onClose={() => setIsSearchOpen(false)} 

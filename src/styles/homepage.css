@@ -557,3 +557,320 @@ body {
 html {
   scroll-behavior: smooth;
 }
+/* ================================================
+   HOME PAGE - RESPONSIVE
+================================================ */
+
+/* ===== TABLET (max-width: 1024px) ===== */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 40px 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-left h1 {
+    font-size: 42px;
+  }
+
+  .hero-left p {
+    width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-right {
+    width: 80%;
+    margin-top: 30px;
+  }
+
+  .popular-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .journey {
+    flex-direction: column;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .journey-content p {
+    max-width: 100%;
+  }
+
+  .journey-stats {
+    justify-content: center;
+  }
+
+  .categories-section h2 {
+    font-size: 38px;
+  }
+
+  .popular-dishes h2 {
+    font-size: 38px;
+  }
+
+  .dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-section h2 {
+    font-size: 38px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+
+  .hero-left h1 {
+    font-size: 32px;
+  }
+
+  .hero-left p {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .explore-btn,
+  .view-btn {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+  }
+
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero-right img {
+    border-radius: 30px;
+  }
+
+  .popular-section {
+    padding: 20px;
+  }
+
+  .popular-section h2 {
+    font-size: 28px;
+  }
+
+  .popular-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .categories-section {
+    margin: 50px auto;
+  }
+
+  .categories-section h2 {
+    font-size: 28px;
+  }
+
+  .categories-section h4 {
+    font-size: 16px;
+  }
+
+  .categories-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .category-arrows {
+    align-self: flex-end;
+  }
+
+  .category-image {
+    width: 120px;
+    height: 200px;
+  }
+
+  .journey {
+    padding: 30px 20px;
+    margin: 50px auto;
+  }
+
+  .journey-content h2 {
+    font-size: 32px;
+  }
+
+  .journey-content h4 {
+    font-size: 18px;
+  }
+
+  .journey-content p {
+    font-size: 14px;
+  }
+
+  .journey-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .journey-stats div {
+    width: 100px;
+    padding: 12px 8px;
+  }
+
+  .journey-stats h3 {
+    font-size: 20px;
+  }
+
+  .journey-image img {
+    height: 300px;
+  }
+
+  .popular-dishes {
+    margin: 50px auto;
+  }
+
+  .popular-dishes h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .section-desc {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .dishes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dish-card img {
+    height: 180px;
+  }
+
+  .dish-header h3 {
+    font-size: 18px;
+  }
+
+  .reviews-section {
+    margin: 50px auto;
+  }
+
+  .reviews-section h2 {
+    font-size: 28px;
+  }
+
+  .reviews-desc {
+    font-size: 14px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ===== MOBILE SMALL (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  .hero-left h1 {
+    font-size: 26px;
+  }
+
+  .welcome-badge {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .explore-btn,
+  .view-btn {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .popular-section h2 {
+    font-size: 24px;
+  }
+
+  .categories-section h2 {
+    font-size: 24px;
+  }
+
+  .categories-section h4 {
+    font-size: 14px;
+  }
+
+  .category-card {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .category-image {
+    width: 100px;
+    height: 160px;
+  }
+
+  .category-card p {
+    font-size: 13px;
+  }
+
+  .journey-content h2 {
+    font-size: 26px;
+  }
+
+  .journey-content h4 {
+    font-size: 16px;
+  }
+
+  .journey-stats div {
+    width: 80px;
+    padding: 10px 6px;
+  }
+
+  .journey-stats h3 {
+    font-size: 18px;
+  }
+
+  .journey-stats span {
+    font-size: 11px;
+  }
+
+  .journey-image img {
+    height: 220px;
+  }
+
+  .popular-dishes h2 {
+    font-size: 24px;
+  }
+
+  .dish-info {
+    padding: 15px;
+  }
+
+  .dish-footer button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .reviews-section h2 {
+    font-size: 24px;
+  }
+
+  .review-card {
+    padding: 18px;
+  }
+}
