@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+/* ✅ إصلاح شامل للغة العربية */
+[lang="ar"] .dishes-grid,
+[lang="ar"] .popular-dishes .dishes-grid {
+  direction: ltr !important;
+}
+
+[lang="ar"] .dish-card,
+[lang="ar"] .popular-dishes .dish-card {
+  direction: ltr !important;
+}
+
+[lang="ar"] .dish-info,
+[lang="ar"] .popular-dishes .dish-info {
+  text-align: left !important;
+}
+
+[lang="ar"] .dish-header h3,
+[lang="ar"] .popular-dishes .dish-header h3 {
+  text-align: left !important;
+}
+
+[lang="ar"] .dish-info p,
+[lang="ar"] .popular-dishes .dish-info p {
+  text-align: left !important;
+}
+
+[lang="ar"] .dish-footer,
+[lang="ar"] .popular-dishes .dish-footer {
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
+[lang="ar"] .add-cart-btn,
+[lang="ar"] .popular-dishes .add-cart-btn {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* فقط النصوص العربية تكون من اليمين */
+[lang="ar"] .popular-dishes h2,
+[lang="ar"] .popular-dishes .section-desc {
+  text-align: right !important;
+}
+
+[lang="ar"] .popular-dishes h2 span.orange {
+  display: inline-block;
+}
