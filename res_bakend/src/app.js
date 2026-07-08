@@ -26,4 +26,7 @@ app.use("/api/sizes", sizeRoutes);
 const orderRoutes = require("./routes/orderRoutes");
 app.use("/api/orders", orderRoutes);
 
+const offerRoutes = require("./routes/offerRoutes");
+app.use("/api/offers", offerRoutes);
+
 module.exports = app;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 يوليو 2026 الساعة 00:56
+-- Generation Time: 08 يوليو 2026 الساعة 23:09
 -- إصدار الخادم: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -149,8 +149,20 @@ CREATE TABLE `offers` (
   `is_active` tinyint(1) DEFAULT 1,
   `start_date` datetime DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `old_price` decimal(10,2) NOT NULL,
+  `new_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `offers`
+--
+
+INSERT INTO `offers` (`id`, `title`, `description`, `image`, `discount_percent`, `is_active`, `start_date`, `end_date`, `created_at`, `old_price`, `new_price`) VALUES
+(1, 'Burger Combo', 'Large Burger + Fries', 'burger.png', 25, 1, '2026-07-08 00:00:00', '2026-07-20 00:00:00', '2026-07-08 20:30:40', 0.00, 0.00),
+(2, 'p', 'a', 's', 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2026-07-08 20:56:49', 0.00, 0.00),
+(3, 'p', 'a', 's', 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2026-07-08 20:57:32', 0.00, 0.00),
+(4, 'pasta Combo', 'Large Burger + Fries', 'burger.png', 25, 1, '2026-07-08 00:00:00', '2026-07-20 00:00:00', '2026-07-08 21:00:36', 20.00, 15.00);
 
 -- --------------------------------------------------------
 
@@ -505,7 +517,7 @@ ALTER TABLE `category_addons`
 -- AUTO_INCREMENT for table `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
