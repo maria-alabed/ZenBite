@@ -11,7 +11,7 @@ import { translations } from "../../utils/translations";
 const Navbar = forwardRef((props, ref) => {
   const [openCart, setOpenCart] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // 🔴 Hamburger menu state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { getTotalItems, isAnimating } = useCart();
   const { language, toggleLanguage, isRTL } = useLanguage();
   const [animate, setAnimate] = useState(false);
@@ -19,6 +19,9 @@ const Navbar = forwardRef((props, ref) => {
   const itemCount = getTotalItems();
 
   const t = translations[language];
+
+  // ✅ التحقق من وجود توكن الأدمن
+  const isAdmin = !!localStorage.getItem("adminToken");
 
   useImperativeHandle(ref, () => ({
     getCartIconRef: () => cartIconRef.current
@@ -93,6 +96,13 @@ const Navbar = forwardRef((props, ref) => {
             <NavLink to="/offer" className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavLinkClick}>
               <span className="nav-name">🔥 {t.offers}</span>
             </NavLink>
+
+            {/* ✅ إظهار رابط الأدمن فقط إذا كان مسجل دخول */}
+            {isAdmin && (
+              <NavLink to="/admin/dashboard" className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavLinkClick}>
+                <span className="nav-name">⚙️ {t.admin || "Admin"}</span>
+              </NavLink>
+            )}
             
             <li 
               className="call-waiter-btn"
