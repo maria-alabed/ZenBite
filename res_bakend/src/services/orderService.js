@@ -1,4 +1,4 @@
-const orderRepository = require("../repositories/orderRepository");
+const orderRepo = require("../repositories/orderRepository");
 
 const createOrder = async (table_id, total_price, items) => {
   const order_id = await orderRepository.createOrder(table_id, total_price);
@@ -27,6 +27,11 @@ const createOrder = async (table_id, total_price, items) => {
   return order_id;
 };
 
+const getRecentOrders = async () => {
+  return await orderRepo.getRecentOrders();
+};
+
 module.exports = {
   createOrder,
+  getRecentOrders,
 };

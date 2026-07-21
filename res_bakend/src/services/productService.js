@@ -1,13 +1,34 @@
 const productRepo = require("../repositories/productRepository");
 
+const getAllProducts = async () => {
+  return await productRepo.getAll();
+};
 const getProductsByCategory = async (categoryId) => {
   return await productRepo.getByCategory(categoryId);
 };
 
-const addProduct = async (name, description, price, image, categoryId) => {
+const addProduct = async (
+  name,
+  name_ar,
+  description,
+  description_ar,
+  price,
+  image,
+  categoryId,
+  calories,
+) => {
   if (!name) throw new Error("Name is required");
 
-  return await productRepo.create(name, description, price, image, categoryId);
+  return await productRepo.create(
+    name,
+    name_ar,
+    description,
+    description_ar,
+    price,
+    image,
+    categoryId,
+    calories,
+  );
 };
 
 const updateProduct = async (
@@ -44,10 +65,16 @@ const toggleStatus = async (id) => {
   return await productRepo.toggleStatus(id);
 };
 
+const getTopProducts = async () => {
+  return await productRepo.getTopProducts();
+};
+
 module.exports = {
   addProduct,
+  getAllProducts,
   getProductsByCategory,
   updateProduct,
   deleteProduct,
   toggleStatus,
+  getTopProducts,
 };

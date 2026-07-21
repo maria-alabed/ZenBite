@@ -4,6 +4,10 @@ const getByCategory = async (categoryId) => {
   return await addonsRepository.getByCategory(categoryId);
 };
 
+const getAll = async () => {
+  return await addonsRepository.getAll();
+};
+
 const createAddon = async (data) => {
   return await addonsRepository.createAddon(data);
 };
@@ -16,4 +20,5 @@ module.exports = {
   getByCategory,
   createAddon,
   toggleAddon,
+  getAll,
 };

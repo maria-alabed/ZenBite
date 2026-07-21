@@ -169,7 +169,7 @@ export default function ProductDetails({ product, onClose }) {
   const crustExtra = isPizza
     ? Number(crustTypes.find((c) => c.id === selectedCrust)?.price || 0)
     : 0;
-  const addonsExtra = selectedAddons.reduce((s, a) => s + a.price, 0);
+  const addonsExtra = selectedAddons.reduce((s, a) => s + Number(a.price), 0);
   const unitPrice = basePrice + crustExtra + addonsExtra;
   const total = unitPrice * quantity;
 

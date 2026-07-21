@@ -4,11 +4,12 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const token = await authService.login(username, password);
+    const result = await authService.login(username, password);
 
     res.json({
       message: "Login successful",
-      token,
+      token: result.token,
+      admin: result.admin,
     });
   } catch (error) {
     res.status(401).json({

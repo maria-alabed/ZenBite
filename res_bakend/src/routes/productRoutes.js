@@ -13,4 +13,7 @@ router.delete("/:id", controller.remove);
 
 router.patch("/:id/status", controller.toggleStatus);
 
+const { getTopProducts } = require("../controllers/productController");
+router.get("/top", getTopProducts);
+
 module.exports = router;

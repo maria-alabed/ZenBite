@@ -40,6 +40,7 @@ export function CartProvider({ children }) {
   };
 
   const addToCart = (item) => {
+    console.log("CART ITEM:", item);
     setLastAddedItem(item);
     setIsAnimating(true);
 
@@ -96,7 +97,18 @@ export function CartProvider({ children }) {
     setCart([]);
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const total = cart.reduce((sum, item) => {
+    const itemPrice = Number(item.price) || 0;
+
+    const addonsPrice = item.addons
+      ? item.addons.reduce(
+          (aSum, addon) => aSum + (Number(addon.price) || 0),
+          0,
+        )
+      : 0;
+
+    return sum + (itemPrice + addonsPrice) * item.qty;
+  }, 0);
 
   return (
     <CartContext.Provider
@@ -115,6 +127,6 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
+} // <-- هذا إغلاق CartProvider
 
 export const useCart = () => useContext(CartContext);

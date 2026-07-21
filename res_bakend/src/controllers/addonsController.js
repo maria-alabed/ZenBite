@@ -15,6 +15,21 @@ const getAddonsByCategory = async (req, res) => {
   }
 };
 
+const getAllAddons = async (req, res) => {
+  try {
+    const data = await addonsService.getAll();
+
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
 // CREATE
 const createAddon = async (req, res) => {
   try {
@@ -45,6 +60,7 @@ const toggleAddon = async (req, res) => {
 };
 
 module.exports = {
+  getAllAddons,
   getAddonsByCategory,
   createAddon,
   toggleAddon,

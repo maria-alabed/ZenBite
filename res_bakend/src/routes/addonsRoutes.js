@@ -5,8 +5,10 @@ const {
   getAddonsByCategory,
   createAddon,
   toggleAddon,
+  getAllAddons,
 } = require("../controllers/addonsController");
 
+router.get("/", getAllAddons);
 // GET by category
 router.get("/:categoryId", getAddonsByCategory);
 

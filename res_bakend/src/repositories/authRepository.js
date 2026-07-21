@@ -6,6 +6,9 @@ const findAdminByUsername = async (username) => {
     [username],
   );
 
+  console.log("USERNAME RECEIVED:", username);
+  console.log("ADMIN FOUND:", rows);
+
   return rows[0];
 };
 

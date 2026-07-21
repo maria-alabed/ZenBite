@@ -319,7 +319,8 @@ export default function MenuPage() {
               <span className="cat-icon"></span>
               <span className="cat-name">
                 {language === "ar" ? cat.name_ar : cat.name}
-              </span>{" "}
+              </span>
+              {}
             </button>
           ))}
         </div>
@@ -520,7 +521,8 @@ export default function MenuPage() {
                                 }));
                               }}
                             >
-                              {size}{" "}
+                              {size}
+                              {}
                               <small>
                                 {size === "S"
                                   ? t.small

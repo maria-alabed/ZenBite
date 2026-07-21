@@ -14,14 +14,38 @@ const getByCategory = async (categoryId) => {
 
   return rows;
 };
+
+const getAll = async () => {
+  const [rows] = await db.query("SELECT * FROM addons WHERE is_active = 1");
+
+  return rows;
+};
+
 // CREATE
 const createAddon = async (data) => {
   const [result] = await db.query(
-    "INSERT INTO addons (name, name_ar, price, emoji, is_active) VALUES (?, ?, ?, ?, 1)",
-    [data.name, data.name_ar, Number(data.price), data.emoji],
+    `
+    INSERT INTO addons 
+    (name, name_ar, price, emoji, is_active)
+    VALUES (?, ?, ?, ?, 1)
+    `,
+    [data.name, data.name_ar || "", Number(data.price), data.emoji || ""],
   );
 
-  return result.insertId;
+  const addonId = result.insertId;
+
+  if (data.category_id) {
+    await db.query(
+      `
+      INSERT INTO category_addons
+      (category_id, addon_id)
+      VALUES (?, ?)
+      `,
+      [data.category_id, addonId],
+    );
+  }
+
+  return addonId;
 };
 
 // TOGGLE
@@ -35,4 +59,5 @@ module.exports = {
   getByCategory,
   createAddon,
   toggleAddon,
+  getAll,
 };

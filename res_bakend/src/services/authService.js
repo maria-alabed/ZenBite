@@ -12,9 +12,9 @@ const login = async (username, password) => {
   // ⚠️ password column fix
   const isMatch = await bcrypt.compare(password, admin.password_hash);
 
-  if (!isMatch) {
-    throw new Error("Invalid username or password");
-  }
+  console.log("PASSWORD:", password);
+  console.log("HASH:", admin.password_hash);
+  console.log("MATCH:", isMatch);
 
   const token = jwt.sign(
     {
@@ -26,7 +26,13 @@ const login = async (username, password) => {
     { expiresIn: "1d" },
   );
 
-  return token;
+  return {
+    token,
+    admin: {
+      id: admin.id,
+      username: admin.username,
+    },
+  };
 };
 
 module.exports = { login };

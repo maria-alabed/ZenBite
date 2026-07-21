@@ -16,7 +16,18 @@ const createOrder = async (req, res) => {
     });
   }
 };
+const getRecentOrders = async (req, res) => {
+  try {
+    const orders = await orderService.getRecentOrders();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   createOrder,
+  getRecentOrders,
 };

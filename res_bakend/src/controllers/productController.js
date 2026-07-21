@@ -4,8 +4,12 @@ const getAll = async (req, res) => {
   try {
     const data = await productService.getAllProducts();
 
+    console.log("DATA FROM SERVICE:", data);
+
     res.json(data);
   } catch (err) {
+    console.log("ERROR PRODUCT:", err); // أضف هذا
+
     res.status(500).json({
       message: err.message,
     });
@@ -22,10 +26,21 @@ const getByCategory = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
 const create = async (req, res) => {
   try {
-    const { name, description, price, image, categoryId } = req.body;
+    const {
+      name,
+      name_ar,
+      description,
+      description_ar,
+      price,
+      image,
+      category_id,
+      calories,
+    } = req.body;
+
+    console.log("BODY RECEIVED:", req.body);
+    console.log("CATEGORY ID:", category_id);
 
     const result = await productService.addProduct(
       name,
@@ -33,7 +48,7 @@ const create = async (req, res) => {
       description,
       description_ar,
       price,
-      image_url,
+      image,
       category_id,
       calories,
     );
@@ -43,6 +58,8 @@ const create = async (req, res) => {
       result,
     });
   } catch (err) {
+    console.log("CREATE PRODUCT ERROR:", err);
+
     res.status(500).json({
       message: err.message,
     });
@@ -110,6 +127,17 @@ const toggleStatus = async (req, res) => {
   }
 };
 
+const getTopProducts = async (req, res) => {
+  try {
+    const products = await productService.getTopProducts();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAll,
   getByCategory,
@@ -117,4 +145,5 @@ module.exports = {
   update,
   remove,
   toggleStatus,
+  getTopProducts,
 };
